@@ -1,0 +1,32 @@
+{
+  "cli": {
+    "version": ">= 16.15.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_aW5mb3JtZWQtZ3J1Yi04Ny5jbGVyay5hY2NvdW50cy5kZXYk",
+        "EXPO_PUBLIC_CONVEX_URL": "https://qualified-crocodile-942.convex.cloud"
+      }
+    },
+    "production": {
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_aW5mb3JtZWQtZ3J1Yi04Ny5jbGVyay5hY2NvdW50cy5kZXYk",
+        "EXPO_PUBLIC_CONVEX_URL": "https://qualified-crocodile-942.convex.cloud"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}
