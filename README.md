@@ -19,24 +19,18 @@ Spotlight is a modern, mobile-first social media app built with React Native and
 
 ---
 
-## 📱 Screenshots
+## 📱 Visuals of My App
 
-> _Add your screenshots here for a visual preview!_
+> _Videos attached for a visual preview!_
 
-| Home Feed | Profile | Notifications |
-|-----------|---------|---------------|
-| ![Feed](./assets/images/screenshot-feed.png) | ![Profile](./assets/images/screenshot-profile.png) | ![Notifications](./assets/images/screenshot-notifications.png) |
+
+https://github.com/user-attachments/assets/c1350208-998b-4111-8973-714dc169e07e
+
 
 ---
 
-## 🚀 How to Use Spotlight
 
-1. **Download the app** (link from your app store or APK)
-2. **Sign up or log in**
-3. **Set up your profile**
-4. **Start posting, following, and connecting!**
-
-No tech skills needed—just download, open, and enjoy!
+- No tech skills needed—just download, open, and enjoy!
 
 ---
 
@@ -63,26 +57,6 @@ No tech skills needed—just download, open, and enjoy!
 - [React Native docs](https://reactnative.dev/)
 - [Convex backend docs](https://docs.convex.dev/)
 
----
-
-## ❓ FAQ
-
-**Q: Is Spotlight free to use?**  
-A: Yes! You can download and use Spotlight for free.
-
-**Q: Do I need to be a techie to use Spotlight?**  
-A: Not at all! Spotlight is designed for everyone—just download and enjoy.
-
-**Q: How do I report a bug or give feedback?**  
-A: See the contact section below.
-
----
-
-## 📬 Contact & Feedback
-
-Have questions, feedback, or want to report a bug?
-- Email: [your-email@example.com]
-- Or open an issue in this repo
 
 ---
 
