@@ -1,50 +1,89 @@
-# Welcome to your Expo app 👋
+# 🌟 Spotlight Social App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Spotlight is a modern, mobile-first social media app built with React Native and Expo. Share your moments, connect with friends, and discover new people—all in a beautiful, easy-to-use interface.
 
-## Get started
+---
 
-1. Install dependencies
+## ✨ Features at a Glance
 
+| Feature                | Description                                                      |
+|------------------------|------------------------------------------------------------------|
+| Real-time Feed         | See posts and stories from people all over the world              |
+| Create Your Profile    | Add a photo, your name, and a short bio                           |
+| Follow Friends         | Find and follow people by name or username                        |
+| Notifications          | Get notified when someone likes, comments, or follows you         |
+| Search                 | Quickly find users by name or username                            |
+| Modern UI              | Smooth cards, rounded corners, shadows, and friendly empty states |
+| Loading Spinners       | Stylish loader while content is loading                           |
+| Mobile-First           | Works great on all devices                                        |
+
+---
+
+## 📱 Screenshots
+
+> _Add your screenshots here for a visual preview!_
+
+| Home Feed | Profile | Notifications |
+|-----------|---------|---------------|
+| ![Feed](./assets/images/screenshot-feed.png) | ![Profile](./assets/images/screenshot-profile.png) | ![Notifications](./assets/images/screenshot-notifications.png) |
+
+---
+
+## 🚀 How to Use Spotlight
+
+1. **Download the app** (link from your app store or APK)
+2. **Sign up or log in**
+3. **Set up your profile**
+4. **Start posting, following, and connecting!**
+
+No tech skills needed—just download, open, and enjoy!
+
+---
+
+## 🛠️ Developer Setup
+
+1. **Install dependencies**
    ```bash
    npm install
    ```
-
-2. Start the app
-
+2. **Start the app**
    ```bash
    npx expo start
    ```
+   - Open in Expo Go, Android emulator, or iOS simulator.
 
-In the output, you'll find options to open the app in a
+3. **Edit the code**
+   - All app code is in the `app` directory (file-based routing).
+   - Components, styles, and backend logic are organized for easy development.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 💡 Learn More
+- [Expo documentation](https://docs.expo.dev/)
+- [React Native docs](https://reactnative.dev/)
+- [Convex backend docs](https://docs.convex.dev/)
 
-## Get a fresh project
+---
 
-When you're ready, run:
+## ❓ FAQ
 
-```bash
-npm run reset-project
-```
+**Q: Is Spotlight free to use?**  
+A: Yes! You can download and use Spotlight for free.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+**Q: Do I need to be a techie to use Spotlight?**  
+A: Not at all! Spotlight is designed for everyone—just download and enjoy.
 
-## Learn more
+**Q: How do I report a bug or give feedback?**  
+A: See the contact section below.
 
-To learn more about developing your project with Expo, look at the following resources:
+---
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## 📬 Contact & Feedback
 
-## Join the community
+Have questions, feedback, or want to report a bug?
+- Email: [your-email@example.com]
+- Or open an issue in this repo
 
-Join our community of developers creating universal apps.
+---
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+**Enjoy Spotlight! If you have feedback or questions, let us know!**
