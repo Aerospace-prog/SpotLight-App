@@ -30,7 +30,7 @@ https://github.com/user-attachments/assets/c1350208-998b-4111-8973-714dc169e07e
 ---
 ## 📥 Download & Try It
 
-[![Download APK](https://img.shields.io/badge/Download-APK-brightgreen?style=for-the-badge&logo=android)](https://github.com/Aerospace-prog/SpotLight-App/releases/download/v1.0.0/SpotLight.Social.Media.App.apk)
+[![Download APK](https://img.shields.io/badge/⬇️%20Download-APK-green?style=for-the-badge&logo=android&logoColor=white)](https://github.com/Aerospace-prog/SpotLight-App/releases/download/v1.0.0/SpotLight.Social.Media.App.apk)
 
 - No tech skills needed—just download, open, and enjoy!
 
