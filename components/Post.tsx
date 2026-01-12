@@ -159,6 +159,7 @@ export default function Post({ post }: PostProps) {
 
       <CommentsModal
         postId={post._id}
+        reelId={undefined}
         visible={showComments}
         onClose={() => setShowComments(false)}
       />

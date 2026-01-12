@@ -8,17 +8,17 @@ import { useMutation, useQuery } from "convex/react";
 import { Image } from "expo-image";
 import { useEffect, useMemo, useState } from "react";
 import {
-  FlatList,
-  Keyboard,
-  KeyboardAvoidingView,
-  Modal,
-  Platform,
-  ScrollView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View,
+    FlatList,
+    Keyboard,
+    KeyboardAvoidingView,
+    Modal,
+    Platform,
+    ScrollView,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    View,
 } from "react-native";
 import { styles } from "../../styles/profile.styles";
 
@@ -29,9 +29,11 @@ export default function Profile() {
   const [listModalVisible, setListModalVisible] = useState(false);
   const [listType, setListType] = useState<"followers" | "following" | null>(null);
   const [selectedPost, setSelectedPost] = useState<Doc<"posts"> | null>(null);
+  const [activeTab, setActiveTab] = useState<"posts" | "reels">("posts");
 
   const currentUser = useQuery(api.users.getUserByClerkId, userId ? { clerkId: userId } : "skip");
   const posts = useQuery(api.posts.getPostsByUser, {});
+  const reels = useQuery(api.reels.getReelsByUser, {});
   const updateProfile = useMutation(api.users.updateProfile);
   const toggleFollow = useMutation(api.users.toggleFollow);
   const isFollowingQuery = useQuery;
@@ -105,7 +107,7 @@ export default function Profile() {
     } catch (e) {}
   };
 
-  if (!currentUser || posts === undefined) return <Loader />;
+  if (!currentUser || posts === undefined || reels === undefined) return <Loader />;
 
   return (
     <View style={styles.container}>
@@ -163,23 +165,97 @@ export default function Profile() {
           </View>
         </View>
 
-        {posts.length === 0 && <NoPostsFound />}
+        {posts.length === 0 && activeTab === "posts" && <NoPostsFound />}
+        {reels.length === 0 && activeTab === "reels" && <NoReelsFound />}
 
-        <FlatList
-          data={posts}
-          numColumns={3}
-          scrollEnabled={false}
-          renderItem={({ item }) => (
-            <TouchableOpacity style={styles.gridItem} onPress={() => setSelectedPost(item)}>
-              <Image
-                source={item.imageUrl}
-                style={styles.gridImage}
-                contentFit="cover"
-                transition={200}
-              />
-            </TouchableOpacity>
-          )}
-        />
+        {/* Tab Selector */}
+        <View style={{
+          flexDirection: "row",
+          borderTopWidth: 1,
+          borderTopColor: COLORS.surface,
+          marginTop: 16,
+        }}>
+          <TouchableOpacity
+            style={{
+              flex: 1,
+              alignItems: "center",
+              paddingVertical: 12,
+              borderBottomWidth: 2,
+              borderBottomColor: activeTab === "posts" ? COLORS.primary : "transparent",
+            }}
+            onPress={() => setActiveTab("posts")}
+          >
+            <Ionicons
+              name="grid-outline"
+              size={24}
+              color={activeTab === "posts" ? COLORS.primary : COLORS.grey}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              flex: 1,
+              alignItems: "center",
+              paddingVertical: 12,
+              borderBottomWidth: 2,
+              borderBottomColor: activeTab === "reels" ? COLORS.primary : "transparent",
+            }}
+            onPress={() => setActiveTab("reels")}
+          >
+            <Ionicons
+              name="play-circle-outline"
+              size={24}
+              color={activeTab === "reels" ? COLORS.primary : COLORS.grey}
+            />
+          </TouchableOpacity>
+        </View>
+
+        {activeTab === "posts" ? (
+          <FlatList
+            data={posts}
+            numColumns={3}
+            scrollEnabled={false}
+            renderItem={({ item }) => (
+              <TouchableOpacity style={styles.gridItem} onPress={() => setSelectedPost(item)}>
+                <Image
+                  source={item.imageUrl}
+                  style={styles.gridImage}
+                  contentFit="cover"
+                  transition={200}
+                />
+              </TouchableOpacity>
+            )}
+            keyExtractor={(item) => item._id}
+          />
+        ) : (
+          <FlatList
+            data={reels}
+            numColumns={3}
+            scrollEnabled={false}
+            renderItem={({ item }) => (
+              <TouchableOpacity style={styles.gridItem}>
+                <Image
+                  source={item.videoUrl}
+                  style={styles.gridImage}
+                  contentFit="cover"
+                  transition={200}
+                />
+                <View style={{
+                  position: "absolute",
+                  bottom: 4,
+                  left: 4,
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}>
+                  <Ionicons name="play" size={12} color={COLORS.white} />
+                  <Text style={{ color: COLORS.white, fontSize: 10, marginLeft: 2 }}>
+                    {item.views}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            )}
+            keyExtractor={(item) => item._id}
+          />
+        )}
       </ScrollView>
 
       {/* FOLLOWERS/FOLLOWING MODAL */}
@@ -332,6 +408,22 @@ function NoPostsFound() {
     >
       <Ionicons name="images-outline" size={48} color={COLORS.primary} />
       <Text style={{ fontSize: 20, color: COLORS.white }}>No posts yet</Text>
+    </View>
+  );
+}
+
+function NoReelsFound() {
+  return (
+    <View
+      style={{
+        height: "100%",
+        backgroundColor: COLORS.background,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Ionicons name="play-circle-outline" size={48} color={COLORS.primary} />
+      <Text style={{ fontSize: 20, color: COLORS.white }}>No reels yet</Text>
     </View>
   );
 }

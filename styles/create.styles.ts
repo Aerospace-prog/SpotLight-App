@@ -1,5 +1,5 @@
-import { StyleSheet, Dimensions } from "react-native";
 import { COLORS } from "@/constants/theme";
+import { Dimensions, StyleSheet } from "react-native";
 
 const { width } = Dimensions.get("window");
 
@@ -55,6 +55,37 @@ export const styles = StyleSheet.create({
   emptyImageText: {
     color: COLORS.grey,
     fontSize: 16,
+  },
+  modeSelection: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 40,
+    paddingVertical: 20,
+    gap: 40,
+  },
+  modeButton: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 16,
+    paddingHorizontal: 24,
+    borderRadius: 12,
+    backgroundColor: COLORS.surface,
+    minWidth: 100,
+  },
+  modeButtonActive: {
+    backgroundColor: COLORS.primary + "20",
+    borderWidth: 1,
+    borderColor: COLORS.primary,
+  },
+  modeButtonText: {
+    color: COLORS.grey,
+    fontSize: 14,
+    fontWeight: "600",
+    marginTop: 8,
+  },
+  modeButtonTextActive: {
+    color: COLORS.primary,
   },
   content: {
     flex: 1,

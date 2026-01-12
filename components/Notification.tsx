@@ -7,6 +7,10 @@ import { Link } from "expo-router";
 import { Text, TouchableOpacity, View } from "react-native";
 
 export default function Notification({ notification }: any) {
+  // Determine if this is a reel or post notification
+  const isReelNotification = !!notification.reel;
+  const mediaUrl = isReelNotification ? notification.reel?.videoUrl : notification.post?.imageUrl;
+
   return (
     <View style={[styles.notificationItem, { borderRadius: 14, marginBottom: 16, backgroundColor: COLORS.surface, shadowColor: COLORS.primary, shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.10, shadowRadius: 8, elevation: 6 }]}>
       <View style={styles.notificationContent}>
@@ -41,7 +45,7 @@ export default function Notification({ notification }: any) {
             {notification.type === "follow"
               ? "started following you"
               : notification.type === "like"
-              ? "liked your post"
+              ? `liked your ${isReelNotification ? "reel" : "post"}`
               : `commented: "${String(notification.comment ?? '')}"`}
           </Text>
           <Text style={styles.timeAgo}>
@@ -50,13 +54,27 @@ export default function Notification({ notification }: any) {
         </View>
       </View>
 
-      {notification.post && (
-        <Image
-          source={notification.post.imageUrl}
-          style={styles.postImage}
-          contentFit="cover"
-          transition={200}
-        />
+      {mediaUrl && (
+        <View style={{ position: "relative" }}>
+          <Image
+            source={mediaUrl}
+            style={styles.postImage}
+            contentFit="cover"
+            transition={200}
+          />
+          {isReelNotification && (
+            <View style={{
+              position: "absolute",
+              top: 4,
+              right: 4,
+              backgroundColor: "rgba(0,0,0,0.6)",
+              borderRadius: 8,
+              padding: 2,
+            }}>
+              <Ionicons name="play" size={10} color={COLORS.white} />
+            </View>
+          )}
+        </View>
       )}
     </View>
   );

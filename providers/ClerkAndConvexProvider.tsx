@@ -1,9 +1,9 @@
 import { ClerkLoaded, ClerkProvider, useAuth } from "@clerk/clerk-expo";
-import { tokenCache } from '@clerk/clerk-expo/token-cache'
-import { ConvexProviderWithClerk } from "convex/react-clerk";
+import { tokenCache } from '@clerk/clerk-expo/token-cache';
 import { ConvexReactClient } from "convex/react";
-import React from "react";
+import { ConvexProviderWithClerk } from "convex/react-clerk";
 import Constants from 'expo-constants';
+import React from "react";
 
 const publishableKey = Constants.expoConfig?.extra?.expoPublicClerkPublishableKey;
 const convexUrl = Constants.expoConfig?.extra?.expoPublicConvexUrl;
@@ -12,7 +12,11 @@ if (!publishableKey) {
   throw new Error("Missing Publishable Key for Clerk");
 }
 
-const convex = new ConvexReactClient(convexUrl!, {
+if (!convexUrl) {
+  throw new Error("Missing Convex URL. Make sure EXPO_PUBLIC_CONVEX_URL is set in .env.local");
+}
+
+const convex = new ConvexReactClient(convexUrl, {
   unsavedChangesWarning: false,
 });
 

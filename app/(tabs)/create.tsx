@@ -5,28 +5,32 @@ import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
-  View,
-  Text,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  Platform,
-  ActivityIndicator,
-  ScrollView,
-  TextInput,
+    ActivityIndicator,
+    KeyboardAvoidingView,
+    Platform,
+    ScrollView,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View
 } from "react-native";
 
 import { Image } from "expo-image";
 
-import * as ImagePicker from "expo-image-picker";
 import * as FileSystem from "expo-file-system";
+import * as ImagePicker from "expo-image-picker";
 
-import { useMutation } from "convex/react";
+import ReelCreator from "@/components/ReelCreator";
 import { api } from "@/convex/_generated/api";
+import { useMutation } from "convex/react";
+
+type CreateMode = "post" | "reel";
 
 export default function CreateScreen() {
   const router = useRouter();
   const { user } = useUser();
 
+  const [createMode, setCreateMode] = useState<CreateMode>("post");
   const [caption, setCaption] = useState("");
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [isSharing, setIsSharing] = useState(false);
@@ -68,11 +72,16 @@ export default function CreateScreen() {
 
       router.push("/(tabs)");
     } catch (error) {
-      console.log("Error sharing post",error);
+      console.log("Error sharing post", error);
     } finally {
       setIsSharing(false);
     }
   };
+
+  // If reel mode is selected, show the reel creator
+  if (createMode === "reel") {
+    return <ReelCreator onClose={() => setCreateMode("post")} />;
+  }
 
   if (!selectedImage) {
     return (
@@ -81,14 +90,73 @@ export default function CreateScreen() {
           <TouchableOpacity onPress={() => router.back()}>
             <Ionicons name="arrow-back" size={28} color={COLORS.primary} />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>New Post</Text>
+          <Text style={styles.headerTitle}>Create</Text>
           <View style={{ width: 28 }} />
         </View>
 
-        <TouchableOpacity style={styles.emptyImageContainer} onPress={pickImage}>
-          <Ionicons name="image-outline" size={48} color={COLORS.grey} />
-          <Text style={styles.emptyImageText}>Tap to select an image</Text>
-        </TouchableOpacity>
+        {/* Mode Selection */}
+        <View style={styles.modeSelection}>
+          <TouchableOpacity
+            style={[
+              styles.modeButton,
+              createMode === "post" && styles.modeButtonActive,
+            ]}
+            onPress={() => setCreateMode("post")}
+          >
+            <Ionicons
+              name="image-outline"
+              size={24}
+              color={createMode === "post" ? COLORS.primary : COLORS.grey}
+            />
+            <Text
+              style={[
+                styles.modeButtonText,
+                createMode === "post" && styles.modeButtonTextActive,
+              ]}
+            >
+              Post
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[
+              styles.modeButton,
+              createMode === "reel" && styles.modeButtonActive,
+            ]}
+            onPress={() => setCreateMode("reel")}
+          >
+            <Ionicons
+              name="videocam-outline"
+              size={24}
+              color={createMode === "reel" ? COLORS.primary : COLORS.grey}
+            />
+            <Text
+              style={[
+                styles.modeButtonText,
+                createMode === "reel" && styles.modeButtonTextActive,
+              ]}
+            >
+              Reel
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        {createMode === "post" && (
+          <TouchableOpacity style={styles.emptyImageContainer} onPress={pickImage}>
+            <Ionicons name="image-outline" size={48} color={COLORS.grey} />
+            <Text style={styles.emptyImageText}>Tap to select an image</Text>
+          </TouchableOpacity>
+        )}
+
+        {createMode === "reel" && (
+          <TouchableOpacity
+            style={styles.emptyImageContainer}
+            onPress={() => setCreateMode("reel")}
+          >
+            <Ionicons name="videocam-outline" size={48} color={COLORS.grey} />
+            <Text style={styles.emptyImageText}>Tap to create a reel</Text>
+          </TouchableOpacity>
+        )}
       </View>
     );
   }

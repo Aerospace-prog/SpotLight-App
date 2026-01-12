@@ -25,6 +25,11 @@ export default function TabLayout() {
             tabBarIcon : ({size , color})=> <Ionicons name = "home" size={size} color={color} />
           }}
         />
+        <Tabs.Screen name="reels"
+          options={{
+            tabBarIcon : ({size , color}) => <Ionicons name = "play-circle" size = {size} color = {color}/>
+          }}
+         />
         <Tabs.Screen name="bookmarks"
           options={{
             tabBarIcon : ({size , color}) => <Ionicons name = "bookmark" size = {size} color = {color}/>

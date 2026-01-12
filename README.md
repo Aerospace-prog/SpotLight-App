@@ -1,65 +1,83 @@
 # 🌟 Spotlight Social App
 
-Spotlight is a modern, mobile-first social media app built with React Native and Expo. Share your moments, connect with friends, and discover new people—all in a beautiful, easy-to-use interface.
+A modern, mobile-first social media app built with React Native, Expo, and Convex.
 
 ---
 
-## ✨ Features at a Glance
+## ✨ Features
 
-| Feature                | Description                                                      |
-|------------------------|------------------------------------------------------------------|
-| Real-time Feed         | See posts and stories from people all over the world              |
-| Create Your Profile    | Add a photo, your name, and a short bio                           |
-| Follow Friends         | Find and follow people by name or username                        |
-| Notifications          | Get notified when someone likes, comments, or follows you         |
-| Search                 | Quickly find users by name or username                            |
-| Modern UI              | Smooth cards, rounded corners, shadows, and friendly empty states |
-| Loading Spinners       | Stylish loader while content is loading                           |
-| Mobile-First           | Works great on all devices                                        |
+| Feature | Description |
+|---------|-------------|
+| 📰 Real-time Feed | Posts from people you follow |
+| 🎬 Reels | Instagram-style vertical video reels with likes, comments, bookmarks |
+| 👤 Profiles | Customizable profile with posts & reels tabs |
+| 👥 Follow System | Follow/unfollow users, see followers & following |
+| 🔔 Notifications | Likes, comments, and follow alerts |
+| 🔍 Search | Find users by name or username |
+| 🔖 Bookmarks | Save posts and reels for later |
+| 💬 Comments | Comment on posts and reels |
+| 🎨 Modern UI | Dark theme with smooth animations |
 
 ---
 
-## 📱 Visuals of My App
+## 🆕 What's New in v1.1.0
 
-> _Videos attached for a visual preview!_
+- **Reels Feature** - Record, upload, and watch vertical video reels
+- **Double-tap to like** with heart animation
+- **Follow/Unfollow** directly from reels
+- **Reels tab** on profile pages
+- **Reel notifications** for likes and comments
+- Bug fixes and performance improvements
 
+---
+
+## 📱 Preview
 
 https://github.com/user-attachments/assets/c1350208-998b-4111-8973-714dc169e07e
 
-
 ---
-## 📥 Download & Try It
 
-[![Download APK](https://img.shields.io/badge/⬇️%20Download-APK-green?style=for-the-badge&logo=android&logoColor=white)](https://github.com/Aerospace-prog/SpotLight-App/releases/download/v1.0.0/SpotLight.Social.Media.App.apk)
+## 📥 Download
 
-- No tech skills needed—just download, open, and enjoy!
+[![Download APK](https://img.shields.io/badge/⬇️%20Download-APK-green?style=for-the-badge&logo=android&logoColor=white)](https://github.com/Aerospace-prog/SpotLight-App/releases)
 
 ---
 
 ## 🛠️ Developer Setup
 
-1. **Install dependencies**
-   ```bash
-   npm install
-   ```
-2. **Start the app**
-   ```bash
-   npx expo start
-   ```
-   - Open in Expo Go, Android emulator, or iOS simulator.
+```bash
+# Install dependencies
+npm install
 
-3. **Edit the code**
-   - All app code is in the `app` directory (file-based routing).
-   - Components, styles, and backend logic are organized for easy development.
+# Start Convex backend
+npx convex dev
 
----
+# Start Expo
+npx expo start
+```
 
-## 💡 Learn More
-- [Expo documentation](https://docs.expo.dev/)
-- [React Native docs](https://reactnative.dev/)
-- [Convex backend docs](https://docs.convex.dev/)
-
+**Environment Variables** (`.env.local`):
+```
+EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_key
+EXPO_PUBLIC_CONVEX_URL=your_convex_url
+```
 
 ---
 
-**Enjoy Spotlight! If you have feedback or questions, let us know!**
+## 🔧 Tech Stack
+
+- **Frontend**: React Native, Expo, Expo Router
+- **Backend**: Convex (real-time database)
+- **Auth**: Clerk
+- **Video**: expo-video, expo-camera
+- **Animations**: react-native-reanimated
+
+---
+
+## 📄 License
+
+MIT
+
+---
+
+**Made with ❤️ by Aerospace**

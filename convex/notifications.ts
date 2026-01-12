@@ -15,10 +15,15 @@ export const getNotifications = query({
       notifications.map(async (notification) => {
         const sender = (await ctx.db.get(notification.senderId))!;
         let post = null;
+        let reel = null;
         let comment = null;
 
         if (notification.postId) {
           post = await ctx.db.get(notification.postId);
+        }
+
+        if (notification.reelId) {
+          reel = await ctx.db.get(notification.reelId);
         }
 
         if (notification.type === "comment" && notification.commentId) {
@@ -33,6 +38,7 @@ export const getNotifications = query({
             image: sender.image,
           },
           post,
+          reel,
           comment: comment?.content,
         };
       })

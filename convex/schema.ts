@@ -23,18 +23,35 @@ export default defineSchema({
     comments: v.number(),
   }).index("by_user", ["userId"]),
 
+  reels: defineTable({
+    userId: v.id("users"),
+    videoUrl: v.string(),
+    storageId: v.id("_storage"),
+    caption: v.optional(v.string()),
+    likes: v.number(),
+    comments: v.number(),
+    views: v.number(),
+    duration: v.optional(v.number()),
+  }).index("by_user", ["userId"]),
+
   likes: defineTable({
     userId: v.id("users"),
-    postId: v.id("posts"),
+    postId: v.optional(v.id("posts")),
+    reelId: v.optional(v.id("reels")),
   })
     .index("by_post", ["postId"])
-    .index("by_user_and_post", ["userId", "postId"]),
+    .index("by_reel", ["reelId"])
+    .index("by_user_and_post", ["userId", "postId"])
+    .index("by_user_and_reel", ["userId", "reelId"]),
 
   comments: defineTable({
     userId: v.id("users"),
-    postId: v.id("posts"),
+    postId: v.optional(v.id("posts")),
+    reelId: v.optional(v.id("reels")),
     content: v.string(),
-  }).index("by_post", ["postId"]),
+  })
+    .index("by_post", ["postId"])
+    .index("by_reel", ["reelId"]),
 
   follows: defineTable({
     followerId: v.id("users"),
@@ -49,16 +66,21 @@ export default defineSchema({
     senderId: v.id("users"),
     type: v.union(v.literal("like"), v.literal("comment"), v.literal("follow")),
     postId: v.optional(v.id("posts")),
+    reelId: v.optional(v.id("reels")),
     commentId: v.optional(v.id("comments"))
   })
     .index("by_receiver", ["receiverId"])
-    .index("by_post", ["postId"]),
+    .index("by_post", ["postId"])
+    .index("by_reel", ["reelId"]),
 
   bookmarks: defineTable({
     userId: v.id("users"),
-    postId: v.id("posts"),
+    postId: v.optional(v.id("posts")),
+    reelId: v.optional(v.id("reels")),
   })
     .index("by_user", ["userId"])
     .index("by_post", ["postId"])
-    .index("by_user_and_post", ["userId", "postId"]),
+    .index("by_reel", ["reelId"])
+    .index("by_user_and_post", ["userId", "postId"])
+    .index("by_user_and_reel", ["userId", "reelId"]),
 });

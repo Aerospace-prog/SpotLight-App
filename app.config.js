@@ -8,7 +8,7 @@ export default ({ config }) => ({
   ...config,
   name: "spotlightApp",
   slug: "spotlightApp",
-  version: "1.0.0",
+  version: "1.1.0",
   orientation: "portrait",
   icon: "./assets/images/icon.png",
   scheme: "spotlightapp",
@@ -33,6 +33,16 @@ export default ({ config }) => ({
   },
   plugins: [
     "expo-router",
+    "expo-secure-store",
+    "expo-video",
+    [
+      "expo-camera",
+      {
+        cameraPermission: "Allow $(PRODUCT_NAME) to access your camera to record reels.",
+        microphonePermission: "Allow $(PRODUCT_NAME) to access your microphone to record reels.",
+        recordAudioAndroid: true
+      }
+    ],
     [
       "expo-splash-screen",
       {

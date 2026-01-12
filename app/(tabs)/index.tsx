@@ -1,6 +1,5 @@
 import { Loader } from "@/components/Loader";
 import Post from "@/components/Post";
-import StoriesSection from "@/components/Stories";
 import SuggestedUsersModal from "@/components/SuggestedUsersModal";
 import { COLORS } from "@/constants/theme";
 import { api } from "@/convex/_generated/api";
@@ -10,7 +9,6 @@ import { useQuery } from "convex/react";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { FlatList, Image, Pressable, RefreshControl, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 import { styles } from "../../styles/feed.styles";
 
 export default function Index() {
@@ -19,11 +17,6 @@ export default function Index() {
   const [refreshing, setRefreshing] = useState(false);
   const [search, setSearch] = useState("");
   const [searchFocused, setSearchFocused] = useState(false);
-  // Animation for plus icon
-  const plusScale = useSharedValue(1);
-  const plusAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: plusScale.value }],
-  }));
   const router = useRouter();
   const [suggestedVisible, setSuggestedVisible] = useState(false);
 
@@ -125,7 +118,6 @@ export default function Index() {
         keyExtractor={(item) => item._id}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 60 }}
-        ListHeaderComponent={<StoriesSection />}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
